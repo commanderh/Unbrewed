@@ -9,7 +9,7 @@ router.get('/', asyncHandler(async (req, res) => {
 	const allDrinks = await Drink.findAll();
 	console.log(allDrinks);
 
-	return res.json({ allDrinks });
+	return res.json( allDrinks );
 }));
 
 

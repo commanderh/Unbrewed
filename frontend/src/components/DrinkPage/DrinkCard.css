@@ -1,0 +1,8 @@
+.drink-card {
+	width: 20vw;
+	border: 1px solid black;
+}
+
+.drink-card__img {
+	width: 100%
+}
