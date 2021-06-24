@@ -4,6 +4,7 @@ import { csrfFetch } from './csrf';
 const LOAD = 'drinks/LOAD';
 const ADD = 'drinks/ADD'
 const REMOVE = '/drinks/REMOVE'
+const EDIT = '/drinks/EDIT'
 
 const load = list => ({
 	type: LOAD,
@@ -20,6 +21,10 @@ const remove = drink => ({
 	drink
 })
 
+const edit = drink => ({
+	type: EDIT,
+	drink
+})
 export const getAllDrinks = () => async dispatch => {
 	const response = await csrfFetch(`/api/drinks`);
 
@@ -44,8 +49,8 @@ export const addDrink = (drink) => async dispatch => {
   }
 };
 
-export const deleteDrink = (drink) => async dispatch => {
-	const response = await csrfFetch(`/api/drinks/:${drink.id}`, {
+export const deleteDrink = (id) => async dispatch => {
+	const response = await csrfFetch(`/api/drinks/${id}`, {
 		method: "DELETE",
 	});
 
@@ -53,6 +58,21 @@ export const deleteDrink = (drink) => async dispatch => {
     const data = await response.json();
 		// console.log(list);
     dispatch(remove(data));
+		return data;
+  }
+};
+
+export const editDrink = (drink) => async dispatch => {
+	console.log(">>>>>>><<<<<<<<<<<<",drink);
+	const response = await csrfFetch(`/api/drinks/${drink.id}`, {
+		method: "PUT",
+		body: JSON.stringify(drink)
+	});
+
+	if (response.ok) {
+    const data = await response.json();
+		// console.log(list);
+    dispatch(edit(data));
 		return data;
   }
 };
@@ -75,6 +95,11 @@ const drinksReducer = (state = initialState, action) => {
 			return {...state, [action.drink.id]: action.drink }
 		}
 		case REMOVE: {
+			const newState = {...state}
+			delete newState[action.drink.id]
+			return newState;
+		}
+		case EDIT: {
 			return {...state, [action.drink.id]: action.drink }
 		}
 		default:
