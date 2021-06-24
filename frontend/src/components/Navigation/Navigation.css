@@ -1,0 +1,12 @@
+.nav__container {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	height: 100px;
+	width: 100%;
+	background-color: rgba(174, 207, 174, 1);
+}
+
+.nav__container-profile-login > *{
+	margin: 20px;
+}

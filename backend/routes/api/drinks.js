@@ -12,5 +12,14 @@ router.get('/', asyncHandler(async (req, res) => {
 	return res.json( allDrinks );
 }));
 
+router.post('/add', asyncHandler(async (req, res) => {
+	const { name, description, imageUrl} = req.body
+	const drink = await Drink.create({name, content: description, imageUrl});
+
+	return res.json( drink )
+}));
+
+
+
 
 module.exports = router;
