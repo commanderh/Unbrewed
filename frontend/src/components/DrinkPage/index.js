@@ -4,14 +4,13 @@ import { getAllDrinks } from '../../store/drinks.js';
 import DrinkCard from './DrinkCard.js';
 import './DrinkPage.css';
 
-const DrinkPage = () => {
+const DrinkPage = ({ allDrinks }) => {
 	const dispatch = useDispatch();
-	const allDrinks = useSelector(state => Object.values(state.drinks))
-	console.log("<<<<<<<<<<>>>>>>>>",allDrinks);
+	// const allDrinks = useSelector(state => Object.values(state.drinks))
 
-	useEffect(() => {
-		dispatch(getAllDrinks());
-	}, [dispatch])
+	// useEffect(() => {
+	// 	dispatch(getAllDrinks());
+	// }, [dispatch])
 	return (
 		<div className="main__container">
 			{allDrinks.map(drink => (
