@@ -11,31 +11,31 @@ const ItemPage = () => {
 	const history = useHistory();
 	console.log(drinkItem);
 
-	//Edit Button event handler
-	const editHandler = () => {
-		return;
-	};
-
 	//Delete Button event handler
 	const deleteHandler = (e) => {
-		const deletedDrink = dispatch(deleteDrink(drinkItem.id));
+		let confirmDelete = window.confirm("Are you sure you want to delete?")
+		if (confirmDelete) {
+			dispatch(deleteDrink(drinkItem.id));
+			history.push("/drinks");
+		}
 		history.push("/drinks");
 	};
 	return (
 		<>
-			{drinkItem && (<div className="drink-container">
-				<div>
-					<img src={drinkItem.imageUrl}></img>
-				</div>
-				<div>
-					<div>{drinkItem.name}</div>
-				</div>
-				<div>
-					<div>{drinkItem.content}</div>
-				</div>
-				<EditDrinkModal drinkItem={drinkItem}/>
-				<button onClick={deleteHandler}>Delete</button>
-			</div>)}
+			{drinkItem && (
+				<div className="drink-container">
+					<div>
+						<img src={drinkItem.imageUrl}></img>
+					</div>
+					<div>
+						<div>{drinkItem.name}</div>
+					</div>
+					<div>
+						<div>{drinkItem.content}</div>
+					</div>
+					<EditDrinkModal drinkItem={drinkItem} />
+					<button onClick={deleteHandler}>Delete</button>
+				</div>)}
 		</>
 	)
 };
