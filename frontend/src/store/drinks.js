@@ -63,7 +63,6 @@ export const deleteDrink = (id) => async dispatch => {
 };
 
 export const editDrink = (drink) => async dispatch => {
-	console.log(">>>>>>><<<<<<<<<<<<",drink);
 	const response = await csrfFetch(`/api/drinks/${drink.id}`, {
 		method: "PUT",
 		body: JSON.stringify(drink)
@@ -83,7 +82,6 @@ const drinksReducer = (state = initialState, action) => {
 	switch(action.type) {
 		case LOAD: {
 			const allDrinks = {};
-			// console.log("<<<<<<<<<<<<>>>>>>>>>>>>>>>>",action.list);
 			action.list.forEach(drink => allDrinks[drink.id] = drink);
 
 			return {

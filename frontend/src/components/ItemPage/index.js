@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import drinksReducer, { deleteDrink } from "../../store/drinks";
 import { useHistory } from "react-router";
 import EditDrinkModal from "../EditDrinkModal";
+import Reviews from "../Reviews";
 
 const ItemPage = () => {
 	const { id } = useParams();
@@ -18,24 +19,33 @@ const ItemPage = () => {
 			dispatch(deleteDrink(drinkItem.id));
 			history.push("/drinks");
 		}
-		history.push("/drinks");
+		history.push(`/drinks/${drinkItem.id}`);
 	};
 	return (
 		<>
 			{drinkItem && (
-				<div className="drink-container">
-					<div>
-						<img src={drinkItem.imageUrl}></img>
+				<div className="item-container">
+					<div className="drink-container">
+						<div>
+							<img src={drinkItem.imageUrl}></img>
+						</div>
+						<div>
+							<div>{drinkItem.name}</div>
+						</div>
+						<div>
+							<div>{drinkItem.content}</div>
+						</div>
+						<EditDrinkModal drinkItem={drinkItem} />
+						<button onClick={deleteHandler}>Delete</button>
 					</div>
-					<div>
-						<div>{drinkItem.name}</div>
+					<div className="reviews-container">
+						{/* {drinkItem && (
+							drinkItem.DrinkReviews.map((review, i) => (<Reviews key={i} review={review}/>))
+						)} */}
+						<button>Add Review</button>
 					</div>
-					<div>
-						<div>{drinkItem.content}</div>
-					</div>
-					<EditDrinkModal drinkItem={drinkItem} />
-					<button onClick={deleteHandler}>Delete</button>
-				</div>)}
+				</div>
+				)}
 		</>
 	)
 };
