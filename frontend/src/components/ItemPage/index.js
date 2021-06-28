@@ -4,6 +4,7 @@ import drinksReducer, { deleteDrink } from "../../store/drinks";
 import { useHistory } from "react-router";
 import EditDrinkModal from "../EditDrinkModal";
 import Reviews from "../Reviews";
+import './ItemPage.css';
 
 const ItemPage = () => {
 	const { id } = useParams();
@@ -21,28 +22,38 @@ const ItemPage = () => {
 		}
 		history.push(`/drinks/${drinkItem.id}`);
 	};
+
+	const handleSubmit = e => {
+		return;
+	};
 	return (
 		<>
 			{drinkItem && (
 				<div className="item-container">
 					<div className="drink-container">
-						<div>
+						<div className="image-container">
 							<img src={drinkItem.imageUrl}></img>
 						</div>
-						<div>
-							<div>{drinkItem.name}</div>
+						<div className="text-container">
+							<div className="container-description">
+								<h1>{drinkItem.name}</h1>
+								<p>{drinkItem.content}</p>
+							</div>
+							{/* <div className="container-content">{drinkItem.content}</div> */}
+							<div className="container-buttons">
+								<EditDrinkModal drinkItem={drinkItem} />
+								<button onClick={deleteHandler}>Delete</button>
+							</div>
 						</div>
-						<div>
-							<div>{drinkItem.content}</div>
-						</div>
-						<EditDrinkModal drinkItem={drinkItem} />
-						<button onClick={deleteHandler}>Delete</button>
 					</div>
 					<div className="reviews-container">
+						<form className="add-review-container">
+							<textarea placeholder="Add Review"></textarea>
+							<button onSubmit={handleSubmit}>Add Review</button>
+						</form>
 						{/* {drinkItem && (
 							drinkItem.DrinkReviews.map((review, i) => (<Reviews key={i} review={review}/>))
 						)} */}
-						<button>Add Review</button>
 					</div>
 				</div>
 				)}

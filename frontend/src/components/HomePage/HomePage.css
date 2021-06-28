@@ -1,0 +1,23 @@
+.homepage-container {
+	height: 100%;
+	width: 100%;
+}
+
+.textbox-1 {
+	position: absolute;
+	top: 500px;
+	right: 250px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.textbox-2 {
+	position: absolute;
+	top: 500px;
+	left: 250px;
+	font-size: 30px;
+	font-weight: bold;
+	word-wrap: normal;
+	width: 200px;
+}
+

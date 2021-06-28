@@ -1,6 +1,6 @@
 .nav__container {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	align-items: center;
 	height: 100px;
 	width: 100%;
@@ -9,4 +9,19 @@
 
 .nav__container-profile-login > *{
 	margin: 20px;
+}
+
+.logo-pic {
+	width: 150px;
+	height: 150px;
+}
+
+.nav__container-links {
+	display: flex;
+	width: 40%;
+	justify-content: space-between;
+}
+
+.nav-links {
+	text-decoration: none;
 }

@@ -6,6 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
 import AddDrinkModal from '../AddDrinkModal';
+import logo from '../../images/unbrewed-logo.png';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -27,13 +28,14 @@ function Navigation({ isLoaded }){
   return (
 		<nav className="nav__container">
 			<div nav__container-logo>
-				Insert Picture here
+				<NavLink exact to="/">
+					<img className="logo-pic" src={logo}></img>
+				</NavLink>
 			</div>
 			<div className="nav__container-links">
-        <NavLink exact to="/">Home</NavLink>
-        <NavLink exact to="/drinks">Drinks</NavLink>
+        <NavLink className="nav-links" exact to="/drinks">Drinks</NavLink>
 				{/* TODO: Add stores later */}
-				<NavLink to="/stores">Stores</NavLink>
+				<NavLink className="nav-links" to="/stores">Stores</NavLink>
         {sessionUser && <AddDrinkModal/>}
 			</div>
 			<div className="nav__container-profile-login">
